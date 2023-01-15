@@ -27,7 +27,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-9sa)ckja^84g&&mr0=5*&5sc^$n1x%1l0dzl@e4a8t&s=&39d#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -36,6 +36,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+CSRF_TRUSTED_ORIGINS = ["https://lakapati.azurewebsites.net", "https://lakapati.azurewebsites.net/"]
 
 # Application definition
 
@@ -50,8 +52,8 @@ INSTALLED_APPS = [
     'functions.apps.FunctionsConfig',
     'crispy_forms',
     'debug_toolbar',
-    "whitenoise.runserver_nostatic",
-    "django.contrib.staticfiles",
+    # "whitenoise.runserver_nostatic",
+    # "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
@@ -63,8 +65,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "django.middleware.security.SecurityMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'lakapati.urls'
@@ -148,7 +150,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+# STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
 
 
 STATIC_URL = 'static/'
