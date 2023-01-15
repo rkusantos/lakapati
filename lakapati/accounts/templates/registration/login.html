@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Lakapati - Login</title>
+      <!-- Custom fonts for this template-->
+      <link href="{% static 'lakapati/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+      <!-- Custom styles for this template-->
+      <link href="{% static 'lakapati/css/sb-admin-2.css' %}" rel="stylesheet">
+   </head>
+   <body class="bg-gradient-primary" style="background-image: url('{% static 'lakapati/assets/media/base/login_kn_page.png' %}');height: 100%;">
+      <video autoplay muted loop id="myVideo">
+         <source src="/media/base/background_video.mp4" type="video/mp4">
+       </video>
+      <div class="container">
+         <!-- Outer Row -->
+         <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+               <div class="card o-hidden border-0 shadow-lg my-5">
+                  <div class="card-body p-0">
+                     <!-- Nested Row within Card Body -->
+                     <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block">
+                           <img class="rounded mx-auto d-block" src="/media/base/leaf.png"  width="400" height="300" alt="center">
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="p-5">
+                              <div class="text-center">
+                                 <h1 class="h4 text-gray-900 mb-4">Lakapati</h1>
+                              </div>
+                              {% if form.errors  %}
+                              <div class="alert alert-danger alert-dismissible" role="alert">
+                                 <div class="alert-text">{{ form.non_field_errors  }}</div>
+                                 <div class="alert-close">                
+                                    <i class="flaticon2-cross kt-icon-sm" data-dismiss="alert"></i>            
+                                 </div>
+                              </div>
+                              <!-- display the form errors if they exist -->
+                              {% endif %}
+                              <form class="form" method="post">
+                                 {% for field in form %}
+                                 <div class="form-group">
+                                    <input type="{{ field.html_name }}" class="form-control form-control-user" name="{{ field.html_name }}" required id="{{ field.id_for_label }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="{{ field.html_name }}">
+                                 </div>
+                                 {% endfor %}
+                                 {% csrf_token %}
+                                 <button type="submit" value="Login" id="submit" name="Login" class="btn btn-primary btn-user btn-block mb-2">Sign In</button>
+                              </form>
+                              <a class="btn btn-danger btn-user btn-block" href="">Forgot Password?</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <style>
+         /* Style the video: 100% width and height to cover the entire window */
+         #myVideo {
+         position: fixed;
+         right: 0;
+         bottom: 0;
+         min-width: 100%;
+         min-height: 100%;
+         }
+
+         /* Add some content at the bottom of the video/page */
+         .content {
+         position: fixed;
+         bottom: 0;
+         background: rgba(0, 0, 0, 0.5);
+         color: #f1f1f1;
+         width: 100%;
+         padding: 20px;
+         }
+
+         /* Style the button used to pause/play the video */
+         #myBtn {
+         width: 200px;
+         font-size: 18px;
+         padding: 10px;
+         border: none;
+         background: #000;
+         color: #fff;
+         cursor: pointer;
+         }
+
+         #myBtn:hover {
+         background: #ddd;
+         color: black;
+         }
+      </style>
+      <script>
+         // Get the video
+         var video = document.getElementById("myVideo");
+         
+         // Get the button
+         var btn = document.getElementById("myBtn");
+         
+         // Pause and play the video, and change the button text
+         function myFunction() {
+           if (video.paused) {
+             video.play();
+             btn.innerHTML = "Pause";
+           } else {
+             video.pause();
+             btn.innerHTML = "Play";
+           }
+         }
+         </script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="{% static 'lakapati/vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'lakapati/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="{% static 'lakapati/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="{% static 'lakapati/js/sb-admin-2.min.js' %}"></script>
+   </body>
+</html>
