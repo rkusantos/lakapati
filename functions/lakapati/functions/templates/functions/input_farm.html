@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+ 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#exampleModal">
+    Add Farm
+    </button>
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Farms
+    </h6>
+</div>
+<div class="card-body">
+    <div>
+    
+    {% if success_message %}
+        <div class="col-4 alert alert-success mb-4" role="alert" style="text-align: center;">
+            {{ success_message }}
+        </div>
+        {% elif error_message %}
+        <div class="col-4 alert alert-danger mb-4" role="alert" style="text-align: center;">
+            {{ error_message }}
+        </div>
+        {% endif %}
+    </div>
+    <div class="table-responsive">
+        <table class="display table table-bordered" id="">
+            <thead>
+                <tr>
+                    <th>USER</th>
+                    <th>FARM NAME</th>
+                    <th>LONGITUDE</th>
+                    <th>LATITUDE</th>
+                    <th>GOOGLE MAPS LINK</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                    <tr>
+                        <td>{{ item.user }}</td>
+                        <td>{{ item.farm_name }}</td>
+                        <td>{{ item.longitude }}</td>
+                        <td>{{ item.latitude }}</td>
+                        <td>
+                            <a href="https://www.google.com/maps?q={{ item.latitude }},{{ item.longitude }}">
+                                VIEW IN GOOGLE MAPS
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>USER</th>
+                    <th>FARM NAME</th>
+                    <th>LONGITUDE</th>
+                    <th>LATITUDE</th>
+                    <th>GOOGLE MAPS LINK</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title text-primary" id="exampleModalLabel">Farms</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    {% load crispy_forms_tags %}
+                <form method="post">
+                    {% csrf_token %} {{ form|crispy }}
+
+                    
+                
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <input type="submit" class='btn btn-primary' value="Submit">
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock content %}  
